@@ -13768,6 +13768,7 @@ ul.comment-list:has(> .ot-comment-item ~ .ot-comment-item):first-child>.ot-post-
   height: 203px;
   object-fit: cover;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .service-list .btn-wrap {
@@ -20367,7 +20368,9 @@ span.select2-selection.select2-selection--single:focus {
   }
 }
 
-
+/*.modal-header{
+  border:  none !important;
+} */
 .btn-primary {
   background-color: var(--theme-color) !important;
 
