@@ -1,44 +1,44 @@
 class ShaderProgram{constructor(holder,options={}){options=Object.assign({antialias:false,depthTest:false,mousemove:false,autosize:true,side:'front',vertex:`
-        precision highp float;
+  precision highp float;
 
-        attribute vec4 a_position;
-        attribute vec4 a_color;
+  attribute vec4 a_position;
+  attribute vec4 a_color;
 
-        uniform float u_time;
-        uniform vec2 u_resolution;
-        uniform vec2 u_mousemove;
-        uniform mat4 u_projection;
+  uniform float u_time;
+  uniform vec2 u_resolution;
+  uniform vec2 u_mousemove;
+  uniform mat4 u_projection;
 
-        varying vec4 v_color;
+  varying vec4 v_color;
 
-        void main() {
+  void main() {
 
-          gl_Position = u_projection * a_position;
-          gl_PointSize = (10.0 / gl_Position.w) * 100.0;
+    gl_Position = u_projection * a_position;
+    gl_PointSize = (10.0 / gl_Position.w) * 100.0;
 
-          v_color = a_color;
+    v_color = a_color;
 
-        }`,fragment:`
-        precision highp float;
+  }`,fragment:`
+  precision highp float;
 
-        uniform sampler2D u_texture;
-        uniform int u_hasTexture;
+  uniform sampler2D u_texture;
+  uniform int u_hasTexture;
 
-        varying vec4 v_color;
+  varying vec4 v_color;
 
-        void main() {
+  void main() {
 
-          if ( u_hasTexture == 1 ) {
+    if ( u_hasTexture == 1 ) {
 
-            gl_FragColor = v_color * texture2D(u_texture, gl_PointCoord);
+      gl_FragColor = v_color * texture2D(u_texture, gl_PointCoord);
 
-          } else {
+    } else {
 
-            gl_FragColor = v_color;
+      gl_FragColor = v_color;
 
-          }
+    }
 
-        }`,uniforms:{},buffers:{},camera:{},texture:null,onUpdate:(()=>{}),onResize:(()=>{}),},options)
+  }`,uniforms:{},buffers:{},camera:{},texture:null,onUpdate:(()=>{}),onResize:(()=>{}),},options)
 const uniforms=Object.assign({time:{type:'float',value:0},hasTexture:{type:'int',value:0},resolution:{type:'vec2',value:[0,0]},mousemove:{type:'vec2',value:[0,0]},projection:{type:'mat4',value:[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]},},options.uniforms)
 const buffers=Object.assign({position:{size:3,data:[]},color:{size:4,data:[]},},options.buffers)
 const camera=Object.assign({fov:60,near:1,far:10000,aspect:1,z:100,perspective:true,},options.camera)
@@ -201,47 +201,47 @@ this.onUpdate(delta)
 requestAnimationFrame(this.update)}}
 const pointSize=2.5
 const waves=new ShaderProgram(document.querySelector('.waves'),{texture:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAb1BMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8v0wLRAAAAJHRSTlMAC/goGvDhmwcExrVjWzrm29TRqqSKenRXVklANSIUE8mRkGpv+HOfAAABCElEQVQ4y4VT13LDMAwLrUHteO+R9f/fWMfO6dLaPeKVEECRxOULWsEGpS9nULDwia2Y+ALqUNbAWeg775zv+sA4/FFRMxt8U2FZFCVWjR/YrH4/H9sarclSKdPMWKzb8VsEeHB3m0shkhVCyNzeXeAQ9Xl4opEieX2QCGnwGbj6GMyjw9t1K0fK9YZunPXeAGsfJtYjwzxaBnozGGorYz0ypK2HzQSYx1y8DgSRo2ewOiyh2QWOEk1Y9OrQV0a8TiBM1a8eMHWYnRMy7CZ4t1CmyRkhSUvP3gRXyHOCLBxNoC3IJv//ZrJ/kxxUHPUB+6jJZZHrpg6GOjnqaOmzp4NDR48OLxn/H27SRQ08S0ZJAAAAAElFTkSuQmCC',uniforms:{size:{type:'float',value:pointSize},field:{type:'vec3',value:[0,0,0]},speed:{type:'float',value:5},},vertex:`
-    #define M_PI 3.1415926535897932384626433832795
+#define M_PI 3.1415926535897932384626433832795
 
-    precision highp float;
+precision highp float;
 
-    attribute vec4 a_position;
-    attribute vec4 a_color;
+attribute vec4 a_position;
+attribute vec4 a_color;
 
-    uniform float u_time;
-    uniform float u_size;
-    uniform float u_speed;
-    uniform vec3 u_field;
-    uniform mat4 u_projection;
+uniform float u_time;
+uniform float u_size;
+uniform float u_speed;
+uniform vec3 u_field;
+uniform mat4 u_projection;
 
-    varying vec4 v_color;
+varying vec4 v_color;
 
-    void main() {
+void main() {
 
-      vec3 pos = a_position.xyz;
+vec3 pos = a_position.xyz;
 
-      pos.y += (
-        cos(pos.x / u_field.x * M_PI * 8.0 + u_time * u_speed) +
-        sin(pos.z / u_field.z * M_PI * 8.0 + u_time * u_speed)
-      ) * u_field.y;
+pos.y += (
+  cos(pos.x / u_field.x * M_PI * 8.0 + u_time * u_speed) +
+  sin(pos.z / u_field.z * M_PI * 8.0 + u_time * u_speed)
+) * u_field.y;
 
-      gl_Position = u_projection * vec4( pos.xyz, a_position.w );
-      gl_PointSize = ( u_size / gl_Position.w ) * 100.0;
+gl_Position = u_projection * vec4( pos.xyz, a_position.w );
+gl_PointSize = ( u_size / gl_Position.w ) * 100.0;
 
-      v_color = a_color;
+v_color = a_color;
 
-    }`,fragment:`
-    precision highp float;
+}`,fragment:`
+precision highp float;
 
-    uniform sampler2D u_texture;
+uniform sampler2D u_texture;
 
-    varying vec4 v_color;
+varying vec4 v_color;
 
-    void main() {
+void main() {
 
-      gl_FragColor = v_color * texture2D(u_texture, gl_PointCoord);
+gl_FragColor = v_color * texture2D(u_texture, gl_PointCoord);
 
-    }`,onResize(w,h,dpi){const position=[],color=[]
+}`,onResize(w,h,dpi){const position=[],color=[]
 const width=400*(w/h)
 const depth=400
 const height=3

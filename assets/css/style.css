@@ -13766,7 +13766,7 @@ ul.comment-list:has(> .ot-comment-item ~ .ot-comment-item):first-child>.ot-post-
 .service-list .box-img img {
   width: 300px;
   height: 203px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -13840,7 +13840,7 @@ ul.comment-list:has(> .ot-comment-item ~ .ot-comment-item):first-child>.ot-post-
   .service-list .box-img img {
     width: 100%;
     min-height: 500px;
-
+    object-fit: contain;
   }
 
   .service-list .box-number {
@@ -13876,6 +13876,7 @@ ul.comment-list:has(> .ot-comment-item ~ .ot-comment-item):first-child>.ot-post-
 @media (max-width: 767px) {
   .service-list .box-img img {
     min-height: 400px;
+    object-fit: contain;
   }
 
   .service-list .box-content {
@@ -13886,6 +13887,7 @@ ul.comment-list:has(> .ot-comment-item ~ .ot-comment-item):first-child>.ot-post-
 @media (max-width: 575px) {
   .service-list .box-img img {
     min-height: 300px;
+    object-fit: contain;
   }
 }
 
