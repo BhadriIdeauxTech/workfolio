@@ -949,17 +949,7 @@ Service Area
                 <div class="swiper ot-slider" data-cue="slideInUp" id="testiSlider2"
                     data-slider-options='{"loop":false,"autoHeight": true,"breakpoints":{"0":{"slidesPerView":1},"768":{"slidesPerView":"2"},"1200":{"slidesPerView":"3"}}}'>
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="testi-card style2" data-bs-toggle="modal" data-bs-target="#reviewModal1">
-                                <span class="box-subtitle">Project Director</span>
-                                <div class="testi-card-content">
-                                    <p class="box-text">
-                                        <img src="assets/img/feedback/fb-1.png" alt="Full PM Review 1"
-                                            style="max-width: 100%; cursor: pointer;">
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="swiper-slide">
                             <div class="testi-card style2" data-bs-toggle="modal" data-bs-target="#reviewModal2">
                                 <span class="box-subtitle">Project Director</span>
@@ -1077,30 +1067,7 @@ Service Area
         </div>
     </section>
 
-    <div class="modal fade" id="reviewModal1" tabindex="-1" aria-labelledby="reviewModal1Label" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="reviewModal1Label">Project Director Review</h5>
-                    <button type="button" class="btn btn-sm" data-bs-dismiss="modal" aria-label="Close">Close</button>
-                </div>
-                <div class="modal-body modal-body-wrapper">
-                    <div class="modal-image-container">
-                        <img src="assets/img/feedback/fb-1.png" alt="Full PM Review 1" class="modal-image"
-                            id="modalImage">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="modal-footer-nav">
-                        <button type="button" class="btn btn btn-sm btn-secondary"
-                            onclick="changeModalImage(1, -1)">Previous</button>
-                        <button type="button" class="btn btn-sm btn-primary"
-                            onclick="changeModalImage(1, 1)">Next</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <div class="modal fade" id="reviewModal2" tabindex="-1" aria-labelledby="reviewModal2Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -1463,7 +1430,7 @@ Service Area
             loop: false,
             autoHeight: true,
             breakpoints: {
-                0: {
+                576: {
                     slidesPerView: 1,
                 },
                 768: {
@@ -1480,7 +1447,7 @@ Service Area
         });
 
         const modalImages = {
-            reviewModal1: 'assets/img/feedback/fb-1.png',
+        
             reviewModal2: 'assets/img/feedback/fb-2.png',
             reviewModal3: 'assets/img/feedback/fb-3.png',
             reviewModal4: 'assets/img/feedback/fb-4.png',
